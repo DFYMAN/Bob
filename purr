@@ -233,11 +233,6 @@ while _G.getCola do task.wait()
 if game.Players.LocalPlayer.Character:FindFirstChild("Cola") or game.Players.LocalPlayer.Backpack:FindFirstChild("Cola") or game.Players.LocalPlayer.Backpack:FindFirstChild("Cola") or game.Players.LocalPlayer.Character:FindFirstChild("Cola") then
     
 else    
-	                local block = Instance.new("Part")
-                        block.Size = Vector3.new(10, 1, 10)
-                        block.Anchored = true
-                        block.Position = 261.349701, 5, 84.8000259
-                        block.Parent = game.Workspace
     local oldpos = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position
     game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(261.349701, 10.2726746, 84.8000259)
     repeat task.wait()
