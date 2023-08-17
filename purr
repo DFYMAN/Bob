@@ -378,7 +378,7 @@ Toggles:AddToggle({
 })
 
 Toggles:AddToggle({
-    Name = "test420",
+    Name = "420",
     Default = false,
     Callback = function(autogetCola)
         spawn(function()
