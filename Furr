@@ -32,6 +32,8 @@ spawn(function()
 task.wait(1)
 end)    
 
+task.wait(1)
+
 if workspace:FindFirstChild("transFolder") then
 
 else    
