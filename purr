@@ -51,7 +51,7 @@ local fagfolder1 = Instance.new("Folder",workspace)
 fagfolder1.Name = "FagFolder"
 
 for i,v in pairs(workspace:GetDescendants()) do
-    if v.Name == "Model 2 " or v.Name == "TransfurPart" then
+    if v.Name == "Model 2 " or v.Name == "TransfurPart" or v.Name == "KillField" then
         v.Parent = fagfolder1
     end    
 end  
@@ -351,6 +351,85 @@ Toggles:AddToggle({
         end)
     end
 })
+
+toggles:AddToggle({
+    Name = "test3",
+    Default = false,
+    Callback = function(autogetbottle)
+        spawn(function()
+            if autogetbottle then
+                _G.getbottle = true
+                notify("Furry Infection ", "AutoGetBottle On ")
+            else
+                _G.getbottle = false
+                notify("Furry Infection ", "AutoGetBottle Off ")
+            end
+
+            while _G.getbottle do
+                task.wait()
+                pcall(function()
+                    -- Check if the player's character has a "bottle"
+                    if game.Players.LocalPlayer.Character:FindFirstChild("bottle") or
+                       game.Players.LocalPlayer.Backpack:FindFirstChild("bottle") then
+                        -- The player already has a bottle
+                    else
+                        local oldpos = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position
+                        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(77, 26, 168.438278)
+                        repeat
+                            task.wait()
+                            fireproximityprompt(_G.bottleProximity, 2, false)
+                        until game.Players.LocalPlayer.Character:FindFirstChild("bottle") or
+                              game.Players.LocalPlayer.Backpack:FindFirstChild("bottle")
+                        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(oldpos)
+                        notify("Furry Infection ", "Grabbed bottle ")
+                    end
+                end)
+            end
+        end)
+    end
+})
+
+Toggles:AddToggle({
+    Name = "test4",
+    Default = false,
+    Callback = function(autogetbottle)
+        spawn(function()
+            if autogetbottle then
+                _G.getbatcrack = true
+                notify("Furry Infection ", "AutoGetbottle On ")
+            else
+                _G.getbatcrack = false
+                notify("Furry Infection ", "AutoGetbottle Off ")
+            end
+
+            while _G.getbottlecrack do
+                task.wait()
+                pcall(function()
+                    -- Check if the player's character has a "bottle" or "Bottle"
+                    if game.Players.LocalPlayer.Character:FindFirstChild("bottle") or
+                       game.Players.LocalPlayer.Backpack:FindFirstChild("bottle") or
+                       game.Players.LocalPlayer.Backpack:FindFirstChild("Bottle") or
+                       game.Players.LocalPlayer.Character:FindFirstChild("Bottle") then
+                        -- The player already has a bottle
+                    else
+                        local oldpos = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position
+                        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(77, 26, 168.438278)
+                        repeat
+                            task.wait()
+                            fireproximityprompt(_G.MetalBatProximity, 2, false)
+                        until game.Players.LocalPlayer.Character:FindFirstChild("bottle") or
+                       	      game.Players.LocalPlayer.Backpack:FindFirstChild("bottle") or
+                              game.Players.LocalPlayer.Backpack:FindFirstChild("Bottle") or
+                              game.Players.LocalPlayer.Character:FindFirstChild("Bottle") then
+                        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(oldpos)
+                        notify("Furry Infection ", "Grabbed bottle ")
+                    end
+                end)
+            end
+        end)
+    end
+})
+
 
 Toggles:AddButton({
 	Name = "Kill All",
