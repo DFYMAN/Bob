@@ -303,7 +303,7 @@ Toggles:AddToggle({
                         until game.Players.LocalPlayer.Character:FindFirstChild("bottle") or
                               game.Players.LocalPlayer.Backpack:FindFirstChild("bottle")
                         
-                        game:GetService("Players").LocalPlayer.Character:MoveTo(oldpos) -- Teleport back
+                        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(oldpos) -- Teleport back
                         wait(1) -- Wait a bit to prevent rapid teleportation
                         notify("Furry Infection ", "Grabbed bottle ")
                     end
