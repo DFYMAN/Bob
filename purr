@@ -428,7 +428,7 @@ Toggles:AddToggle({
 })
 
 Toggles:AddToggle({
-    Name = "720",
+    Name = "RareFur",
     Default = false,
     Callback = function(RareFur)
         spawn(function()
@@ -453,7 +453,7 @@ Toggles:AddToggle({
                     local player = game.Players.LocalPlayer
                     local originalPosition = player.Character.HumanoidRootPart.Position
                     local targetPosition = Vector3.new(262.784332, 15.1500025, 7.68388748) -- Replace with your specific target position
-                    local waitTime = 0.01 -- Time in seconds to wait
+                    local waitTime = 0.1 -- Time in seconds to wait
 
                     -- Teleport to the target position
                     player.Character.HumanoidRootPart.CFrame = CFrame.new(targetPosition)
