@@ -304,7 +304,6 @@ Toggles:AddToggle({
     end
 })
 
-
 Toggles:AddToggle({
     Name = "AutoGetBottle",
     Default = false,
