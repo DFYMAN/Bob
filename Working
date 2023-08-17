@@ -63,7 +63,7 @@ OrionLib:MakeNotification({
     Name = "Furry Infection ",
     Content = "UseLess Person#7247",
     Image = "rbxassetid://6890648157", --- rbxassetid://4483345998
-    Time = 5
+    Time = 3
 })
 
 function notify(name,text)
@@ -71,7 +71,7 @@ function notify(name,text)
     Name = name,
     Content = text,
     Image = "rbxassetid://6890648157", --- rbxassetid://4483345998
-    Time = 5
+    Time = 3
 })
 
 end
@@ -304,41 +304,6 @@ Toggles:AddToggle({
     end
 })
 
-Toggles:AddToggle({
-    Name = "AutoGetBottle",
-    Default = false,
-    Callback = function(autogetbottle)
-        spawn(function()
-            if autogetbottle then
-                _G.getbottle = true
-                notify("Furry Infection ", "AutoGetBottle On ")
-            else
-                _G.getbottle = false
-                notify("Furry Infection ", "AutoGetBottle Off ")
-            end
-
-            while _G.getbottle do
-                task.wait()
-                pcall(function()
-                    if game.Players.LocalPlayer.Character:FindFirstChild("Bottle") or
-                       game.Players.LocalPlayer.Backpack:FindFirstChild("Bottle") then
-                        -- The player already has a "bottle"
-                    else
-                        local oldpos = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position
-                        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(77, 26, 168.438278)
-                        repeat
-                            task.wait()
-                            fireproximityprompt(_G.bottleProximity, 2, false)
-                        until game.Players.LocalPlayer.Character:FindFirstChild("Bottle") or
-                              game.Players.LocalPlayer.Backpack:FindFirstChild("Bottle")
-                        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(oldpos)
-                        notify("Furry Infection ", "Grabbed bottle ")
-                    end
-                end)
-            end
-        end)
-    end
-})
 
 local player = game.Players.LocalPlayer
 local originalPosition = player.Character.HumanoidRootPart.Position
