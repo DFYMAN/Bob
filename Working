@@ -29,7 +29,7 @@ for i,v in pairs(workspace:GetDescendants()) do
 end  
 
 for i, v in pairs(workspace:GetDescendants()) do
-    if v.Name == "ItemName" and v.Parent.Name == "Configuration" and v.Parent.Parent.Name == "Bottle" and v.Value == "Bottle" then
+    if v.Name == "ItemName" and v.Parent.Name == "Configuration" and v.Parent.Parent.Name == "bottle" and v.Value == "bottle" then
         _G.BottleProximity = v.Parent.Parent:FindFirstChild("ProximityPrompt")
     end    
 end
@@ -284,25 +284,25 @@ Toggles:AddToggle({
             while _G.getbottle do
                 task.wait()
                 pcall(function()
-                    if game.Players.LocalPlayer.Character:FindFirstChild("Bottle") or
+                    if game.Players.LocalPlayer.Character:FindFirstChild("bottle") or
                        game.Players.LocalPlayer.Backpack:FindFirstChild("bottle") then
+                        -- The player already has a "bottle"
                     else
                         local oldpos = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position
-                        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(75.0997849, 25.4926491, 168.438278)
-                        repeat task.wait()
-                            game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(75.0997849, 25.4926491, 168.438278)
-                            fireproximityprompt(_G.BottleProximity, 2, false)
-                        until game.Players.LocalPlayer.Character:FindFirstChild("Bottle") or
-                              game.Players.LocalPlayer.Backpack:FindFirstChild("Bottle")
+                        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(77, 26, 168.438278)
+                        repeat
+                            task.wait()
+                            fireproximityprompt(_G.BottleProximity, 2, false) -- Use _G.BottleProximity here
+                        until game.Players.LocalPlayer.Character:FindFirstChild("bottle") or
+                              game.Players.LocalPlayer.Backpack:FindFirstChild("bottle")
                         game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(oldpos)
-                        notify("Furry Infection ", "Grabbed Bottle ")
+                        notify("Furry Infection ", "Grabbed bottle ")
                     end
                 end)
             end
         end)
     end
 })
-
 Toggles:AddToggle({
     Name = "AutoGetBottle",
     Default = false,
