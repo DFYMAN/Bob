@@ -29,7 +29,7 @@ for i,v in pairs(workspace:GetDescendants()) do
 end  
 
 for i, v in pairs(workspace:GetDescendants()) do
-    if v.Name == "ItemName" and v.Parent.Name == "Configuration" and v.Parent.Parent.Name == "bottle" and v.Value == "bottle" then
+    if v.Name == "ItemName" and v.Parent.Name == "Configuration" and v.Parent.Parent.Name == "Bottle" and v.Value == "Bottle" then
         _G.BottleProximity = v.Parent.Parent:FindFirstChild("ProximityPrompt")
     end    
 end
@@ -319,8 +319,8 @@ Toggles:AddToggle({
             while _G.getbottle do
                 task.wait()
                 pcall(function()
-                    if game.Players.LocalPlayer.Character:FindFirstChild("bottle") or
-                       game.Players.LocalPlayer.Backpack:FindFirstChild("bottle") then
+                    if game.Players.LocalPlayer.Character:FindFirstChild("Bottle") or
+                       game.Players.LocalPlayer.Backpack:FindFirstChild("Bottle") then
                         -- The player already has a "bottle"
                     else
                         local oldpos = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position
@@ -328,8 +328,8 @@ Toggles:AddToggle({
                         repeat
                             task.wait()
                             fireproximityprompt(_G.bottleProximity, 2, false)
-                        until game.Players.LocalPlayer.Character:FindFirstChild("bottle") or
-                              game.Players.LocalPlayer.Backpack:FindFirstChild("bottle")
+                        until game.Players.LocalPlayer.Character:FindFirstChild("Bottle") or
+                              game.Players.LocalPlayer.Backpack:FindFirstChild("Bottle")
                         game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(oldpos)
                         notify("Furry Infection ", "Grabbed bottle ")
                     end
