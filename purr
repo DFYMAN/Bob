@@ -341,12 +341,24 @@ Toggles:AddToggle({
                         -- The player already has a DietCola
                     else
                         local oldpos = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position
+
+                        -- Create a block to prevent falling
+                        local block = Instance.new("Part")
+                        block.Size = Vector3.new(10, 1, 10)
+                        block.Anchored = true
+                        block.Position = oldpos + Vector3.new(0, -5, 0)
+                        block.Parent = game.Workspace
+
                         game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(430.275208, 10.7813654, 268.013153)
                         repeat
                             task.wait()
                             fireproximityprompt(_G.DietColaProximity, 2, false)
                         until game.Players.LocalPlayer.Character:FindFirstChild("DietCola") or
                               game.Players.LocalPlayer.Backpack:FindFirstChild("DietCola")
+
+                        -- Remove the block to allow the character to fall again
+                        block:Destroy()
+
                         game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(oldpos)
                         notify("Furry Infection ", "Grabbed DietCola ")
                     end
