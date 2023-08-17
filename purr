@@ -473,16 +473,16 @@ Toggles:AddToggle({
 })
 
 Toggles:AddToggle({
-    Name = "test5",
+    Name = "GlowPlayers",
     Default = false,
-    Callback = function(test5)
+    Callback = function(GlowPlayers)
         spawn(function()
             if GlowPlayers then
                 _G.Glowing = true
-                notify("Script Status", "test5 On")
+                notify("Script Status", "GlowPlayers On")
             else
                 _G.Glowing = false
-                notify("Script Status", "test5 Off")
+                notify("Script Status", "GlowPlayers Off")
             end
 
             while _G.Glowing do
@@ -493,22 +493,20 @@ Toggles:AddToggle({
                             local character = player.Character
                             local humanoid = character.Humanoid
 
-                            local teamColor = player.TeamColor -- Get the player's team color
+                            local teamColor = player.Team and player.Team.TeamColor or BrickColor.new("Bright red") -- Default color if no team
                             local glowEffect = Instance.new("PointLight")
                             glowEffect.Brightness = 2
                             glowEffect.Range = 10
-                            glowEffect.Color = teamColor.Color -- Set the glow color based on team
+                            glowEffect.Color = teamColor.Color
                             glowEffect.Parent = character
 
-                            -- Calculate distance
                             local playerDistance = (character.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
 
-                            -- Create UI text label
                             local label = Instance.new("TextLabel")
                             label.Text = string.format("Health: %d\nDistance: %.2f", humanoid.Health, playerDistance)
                             label.Size = UDim2.new(0, 100, 0, 50)
                             label.Position = UDim2.new(0, 0, 0, -60)
-                            label.TextColor3 = teamColor.Color -- Set label text color based on team
+                            label.TextColor3 = teamColor.Color
                             label.Parent = character
                         end
                     end
