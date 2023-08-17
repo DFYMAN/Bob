@@ -221,37 +221,43 @@ Toggles:AddToggle({
     Default = false,
     Callback = function(autogetCola)
         spawn(function()
-        if autogetCola then
-            _G.getCola = true
-            notify("Furry Infection ","AutoGetCola On ")
-        else
-            _G.getCola = false
-            notify("Furry Infection ","AutoGetCola Off ")
-        end
-while _G.getCola do task.wait()  
-    pcall(function()
-if game.Players.LocalPlayer.Character:FindFirstChild("Cola") or game.Players.LocalPlayer.Backpack:FindFirstChild("Cola") or game.Players.LocalPlayer.Backpack:FindFirstChild("Cola") or game.Players.LocalPlayer.Character:FindFirstChild("Cola") then
-    
-else    
-    local oldpos = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position
-        local block = Instance.new("Part")
-        block.Size = Vector3.new(10, 1, 10)
-         block.Anchored = true
-         block.Position = (261.349701, 5, 84.8000259)
-        block.Parent = game.Workspace
-    game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(261.349701, 10.2726746, 84.8000259)
-    repeat task.wait()
-    game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(261.349701, 10.2726746, 84.8000259)    
-    fireproximityprompt(_G.ColaProximity, 2, false)
-    until game.Players.LocalPlayer.Character:FindFirstChild("Cola") or game.Players.LocalPlayer.Backpack:FindFirstChild("Cola") or game.Players.LocalPlayer.Backpack:FindFirstChild("Cola") or game.Players.LocalPlayer.Character:FindFirstChild("Cola")
-    game:GetService("Players").localPlayer.Character:MoveTo(oldpos)
-    notify("Furry Infection ","Grabbed Cola ")
-end
-end) 
-end
-end)
+            if autogetCola then
+                _G.getCola = true
+                notify("Furry Infection ", "AutoGetCola On ")
+            else
+                _G.getCola = false
+                notify("Furry Infection ", "AutoGetCola Off ")
+            end
 
-    end    
+            while _G.getCola do
+                task.wait()
+                pcall(function()
+                    if game.Players.LocalPlayer.Character:FindFirstChild("Cola") or
+                       game.Players.LocalPlayer.Backpack:FindFirstChild("Cola") then
+                        -- The player already has a "Cola"
+                    else
+                        local oldpos = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position
+
+                        -- Spawn a block under the player
+                        local block = Instance.new("Part")
+                        block.Size = Vector3.new(10, 1, 10)
+                        block.Anchored = true
+                        block.Position = Vector3.new(261.349701, 5, 84.8000259) -- Adjust the position here
+                        block.Parent = game.Workspace
+
+                        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(261.349701, 10.2726746, 84.8000259)
+                        repeat task.wait()
+                            game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(261.349701, 10.2726746, 84.8000259)
+                            fireproximityprompt(_G.ColaProximity, 2, false)
+                        until game.Players.LocalPlayer.Character:FindFirstChild("Cola") or
+                              game.Players.LocalPlayer.Backpack:FindFirstChild("Cola")
+                        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(oldpos)
+                        notify("Furry Infection ", "Grabbed Cola ")
+                    end
+                end)
+            end
+        end)
+    end
 })
 
 Toggles:AddToggle({
