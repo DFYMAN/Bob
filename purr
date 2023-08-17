@@ -325,25 +325,75 @@ Toggles:AddToggle({
     Callback = function(autogetDietCola)
         spawn(function()
             if autogetDietCola then
-                _G.getDietCola = true
                 notify("Furry Infection ", "AutoGetDietCola On ")
             else
-                _G.getDietCola = false
                 notify("Furry Infection ", "AutoGetDietCola Off ")
             end
 
-            while _G.getDietCola do
+            while autogetDietCola do
                 task.wait()
                 pcall(function()
-                    -- Check if the player's character has a "DietCola" or "DietCola"
-                    if game.Players.LocalPlayer.Character:FindFirstChild("DietCola") or
-                       game.Players.LocalPlayer.Backpack:FindFirstChild("DietCola") then
-                        -- The player already has a DietCola
-                    else
+                    -- Check if the player's character has a "DietCola"
+                    if not (game.Players.LocalPlayer.Character:FindFirstChild("Diet Cola") or
+                            game.Players.LocalPlayer.Backpack:FindFirstChild("Diet Cola")) then
                         local spawnPos = Vector3.new(430.275208, 10.7813654, 268.013153)
-                        local teleportPos = Vector3.new(123.456, 78.901, 234.567)  -- Replace with your specific position
-                        
-                        -- Spawn a block
+                        local teleportPos = Vector3.new(150.23819, 28, 55.2370529)
+
+                        local block = Instance.new("Part")
+                        block.Size = Vector3.new(10, 1, 10)
+                        block.Anchored = true
+                        block.Position = spawnPos
+                        block.Parent = game.Workspace
+
+                        -- Teleport to spawn position
+                        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(spawnPos)
+                        repeat
+                            task.wait()
+                        until game:GetService("Players").LocalPlayer.Character.Humanoid:GetState() == Enum.HumanoidStateType.Physics
+
+                        -- Fire proximity prompt to get DietCola
+                        fireproximityprompt(_G.DietColaProximity, 2, false)
+                        repeat
+                            task.wait()
+                        until game.Players.LocalPlayer.Character:FindFirstChild("DietCola") or
+                              game.Players.LocalPlayer.Backpack:FindFirstChild("DietCola")
+
+                        -- Teleport to specific position
+                        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(teleportPos)
+
+                        -- Remove the block
+                        block:Destroy()
+
+                        notify("Furry Infection ", "Grabbed DietCola ")
+                    end
+                end)
+            end
+        end)
+    end
+})
+
+Toggles:AddToggle({
+    Name = "test420",
+    Default = false,
+    Callback = function(autogetCola)
+        spawn(function()
+            if autogetCola then
+                _G.getCola = true
+                notify("Furry Infection ","AutoGetCola On ")
+            else
+                _G.getCola = false
+                notify("Furry Infection ","AutoGetCola Off ")
+            end
+
+            while _G.getCola do
+                task.wait()
+                pcall(function()
+                    -- Check if the player's character has a "Cola"
+                    if not (game.Players.LocalPlayer.Character:FindFirstChild("Cola") or
+                            game.Players.LocalPlayer.Backpack:FindFirstChild("Cola")) then
+                        local spawnPos = Vector3.new(261.349701, 10.2726746, 84.8000259)
+
+                        -- Spawn a block under the player
                         local block = Instance.new("Part")
                         block.Size = Vector3.new(10, 1, 10)
                         block.Anchored = true
@@ -356,25 +406,27 @@ Toggles:AddToggle({
                             task.wait()
                         until game:GetService("Players").LocalPlayer.Character.Humanoid:GetState() == Enum.HumanoidStateType.Physics
 
-                        fireproximityprompt(_G.DietColaProximity, 2, false)
+                        -- Fire proximity prompt to get Cola
+                        fireproximityprompt(_G.ColaProximity, 2, false)
                         repeat
                             task.wait()
-                        until game.Players.LocalPlayer.Character:FindFirstChild("Diet Cola") or
-                              game.Players.LocalPlayer.Backpack:FindFirstChild("Diet Cola")
-			task.wait()
-                        -- Teleport to specific position
-                        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(150.23819, 28, 55.2370529)
+                        until game.Players.LocalPlayer.Character:FindFirstChild("Cola") or
+                              game.Players.LocalPlayer.Backpack:FindFirstChild("Cola")
+
+                        -- Teleport back to original position
+                        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(spawnPos)
 
                         -- Remove the block
                         block:Destroy()
 
-                        notify("Furry Infection ", "Grabbed DietCola ")
+                        notify("Furry Infection ", "Grabbed Cola ")
                     end
                 end)
             end
         end)
     end
 })
+
 Toggles:AddButton({
 	Name = "Kill All",
 	Callback = function()
