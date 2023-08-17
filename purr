@@ -290,6 +290,7 @@ Toggles:AddToggle({
             while _G.getbottle do
                 task.wait()
                 pcall(function()
+                    -- Check if the player's character has a "bottle"
                     if game.Players.LocalPlayer.Character:FindFirstChild("bottle") or
                        game.Players.LocalPlayer.Backpack:FindFirstChild("bottle") then
                         -- The player already has a bottle
@@ -298,13 +299,10 @@ Toggles:AddToggle({
                         game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(77, 26, 168.438278)
                         repeat
                             task.wait()
-                            game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(77, 26, 168.438278)
                             fireproximityprompt(_G.bottleProximity, 2, false)
                         until game.Players.LocalPlayer.Character:FindFirstChild("bottle") or
                               game.Players.LocalPlayer.Backpack:FindFirstChild("bottle")
-                        
-                        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(oldpos) -- Teleport back
-                        wait(1) -- Wait a bit to prevent rapid teleportation
+                        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(oldpos)
                         notify("Furry Infection ", "Grabbed bottle ")
                     end
                 end)
