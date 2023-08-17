@@ -10,36 +10,11 @@ for i,v in pairs(workspace:GetDescendants()) do
     end    
 end    
 
-for i,v in pairs(workspace:GetDescendants()) do
-    if v.Name == "ItemName" and v.Parent.Name == "Configuration" and v.Parent.Parent.Name == "Bottle" and v.Value == "Bottle" then
-        _G.BottleProximity = v.Parent.Parent:FindFirstChild("ProximityPrompt")
-        -- pass
-    else
-        --- not pass
-    end    
-end    
-
-for i,v in pairs(workspace:GetDescendants()) do
-    if v.Name == "ItemName" and v.Parent.Name == "Configuration" and v.Parent.Parent.Name == "bottle" and v.Value == "bottle" then
-        _G.bottleProximity = v.Parent.Parent:FindFirstChild("ProximityPrompt")
-        -- pass
-    else
-        --- not pass
-    end    
-end    
-
 spawn(function()
-    local msg = Instance.new("Message",workspace)
-    msg.Text = "MheeHax is a bozo LLL nigger nigger nigger!"
-    task.wait(4)
-    msg.Text = "Btw i just fixed the script no additional features were added, MheeHax is a bozo LLL nigger nigger nigger!"
-    task.wait(5)
-    msg.Text = "Also ill be adding nigger to make the script less reviewable nigger nigger nigger"
-    task.wait(5)
-    msg:Destroy()
+    task.wait(1)
 end)    
 
-task.wait(5)
+task.wait(1)
 
 if workspace:FindFirstChild("transFolder") then
 
