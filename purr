@@ -445,7 +445,7 @@ Toggles:AddToggle({
                 pcall(function()
                     local player = game.Players.LocalPlayer
                     local originalPosition = player.Character.HumanoidRootPart.Position
-                    local targetPosition = Vector3.new(150.23819, 24.9699326, 55.2370529)
+                    local targetPosition = Vector3.new(262.784332, 15.1500025, 7.68388748)
                     local waitTime = 2
 
                     player.Character.HumanoidRootPart.CFrame = CFrame.new(targetPosition)
