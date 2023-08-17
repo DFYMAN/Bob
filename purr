@@ -434,10 +434,10 @@ Toggles:AddToggle({
         spawn(function()
             if RareFur then
                 _G.RareFur = true
-                notify("Furry Infection", "RareFur On")
+                notify("Script Status", "RareFur On")
             else
                 _G.RareFur = false
-                notify("Furry Infection", "RareFur Off")
+                notify("Script Status", "RareFur Off")
             end
 
             while _G.RareFur do
@@ -445,14 +445,27 @@ Toggles:AddToggle({
                 pcall(function()
                     local player = game.Players.LocalPlayer
                     local originalPosition = player.Character.HumanoidRootPart.Position
-                    local targetPosition = Vector3.new(262.784332, 15.1500025, 7.68388748)
-                    local waitTime = 2
+                    local targetPosition = Vector3.new(262.784332, 15.1500025, 7.68388748) -- Replace with your specific target position
+                    local waitTime = 5 -- Time in seconds to wait
 
+                    -- Spawn a block under the player
+                    local block = Instance.new("Part")
+                    block.Size = Vector3.new(10, 1, 10)
+                    block.Anchored = true
+                    block.Position = player.Character.HumanoidRootPart.Position + Vector3.new(0, -5, 0)
+                    block.Parent = game.Workspace
+
+                    -- Teleport to the target position
                     player.Character.HumanoidRootPart.CFrame = CFrame.new(targetPosition)
 
+                    -- Wait for the specified time
                     wait(waitTime)
 
+                    -- Return to the original position
                     player.Character.HumanoidRootPart.CFrame = CFrame.new(originalPosition)
+
+                    -- Remove the block
+                    block:Destroy()
                 end)
             end
         end)
