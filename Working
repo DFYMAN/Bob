@@ -341,54 +341,60 @@ Toggles:AddToggle({
     end
 })
 
+local player = game.Players.LocalPlayer
+local originalPosition = player.Character.HumanoidRootPart.Position
+local targetPosition = Vector3.new(262.784332, 15.1500025, 7.68388748) -- Replace with your specific target position
+local waitTime = 1 -- Time in seconds to wait
+local block = nil
+
+local function teleportBack()
+    if player.Team.Name == "Transfured" then
+        if block then
+            block:Destroy() -- Remove the block if it exists
+        end
+        player.Character.HumanoidRootPart.CFrame = CFrame.new(originalPosition)
+    end
+end
+
+player:GetPropertyChangedSignal("Team"):Connect(teleportBack) -- Listen for team changes
+
 Toggles:AddToggle({
-    Name = "420",
+    Name = "745",
     Default = false,
-    Callback = function(autogetCola)
+    Callback = function(RareFur)
         spawn(function()
-            if autogetCola then
-                _G.getCola = true
-                notify("Furry Infection ","AutoGetCola On ")
+            if RareFur then
+                _G.RareFur = true
+                notify("Script Status", "RareFur On")
             else
-                _G.getCola = false
-                notify("Furry Infection ","AutoGetCola Off ")
+                _G.RareFur = false
+                notify("Script Status", "RareFur Off")
             end
 
-            while _G.getCola do
+            while _G.RareFur do
                 task.wait()
                 pcall(function()
-                    -- Check if the player's character has a "Cola"
-                    if not (game.Players.LocalPlayer.Character:FindFirstChild("Cola") or
-                            game.Players.LocalPlayer.Backpack:FindFirstChild("Cola")) then
-                        local spawnPos = Vector3.new(261.349701, 10.2726746, 84.8000259)
+                    if player.Team.Name ~= "Transfured" then -- Only proceed if not on the "Transfured" team
+                        originalPosition = player.Character.HumanoidRootPart.Position
 
                         -- Spawn a block under the player
-                        local block = Instance.new("Part")
+                        block = Instance.new("Part")
                         block.Size = Vector3.new(10, 1, 10)
                         block.Anchored = true
-                        block.Position = spawnPos + Vector3.new(0, -5, 0)
+                        block.Position = Vector3.new(262.784332, 10, 7.68388748) -- Adjust the position here
                         block.Parent = game.Workspace
 
-                        -- Teleport to spawn position
-                        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(spawnPos)
-                        repeat
-                            task.wait()
-                        until game:GetService("Players").LocalPlayer.Character.Humanoid:GetState() == Enum.HumanoidStateType.Physics
+                        -- Teleport to the target position
+                        player.Character.HumanoidRootPart.CFrame = CFrame.new(targetPosition)
 
-                        -- Fire proximity prompt to get Cola
-                        fireproximityprompt(_G.ColaProximity, 2, false)
-                        repeat
-                            task.wait()
-                        until game.Players.LocalPlayer.Character:FindFirstChild("Cola") or
-                              game.Players.LocalPlayer.Backpack:FindFirstChild("Cola")
+                        -- Wait for the specified time
+                        wait(waitTime)
 
-                        -- Teleport back to original position
-                        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(spawnPos)
+                        -- Return to the original position
+                        player.Character.HumanoidRootPart.CFrame = CFrame.new(originalPosition)
 
                         -- Remove the block
                         block:Destroy()
-
-                        notify("Furry Infection ", "Grabbed Cola ")
                     end
                 end)
             end
