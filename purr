@@ -332,12 +332,13 @@ Toggles:AddToggle({
                 notify("Furry Infection ", "AutoGetDietCola Off ")
             end
 
-            while _G.DietCola do
+            while _G.getDietCola do
                 task.wait()
                 pcall(function()
                     -- Check if the player's character has a "DietCola" or "DietCola"
                     if game.Players.LocalPlayer.Character:FindFirstChild("DietCola") or
-                       game.Players.LocalPlayer.Backpack:FindFirstChild("DietCola") or
+                       game.Players.LocalPlayer.Backpack:FindFirstChild("DietCola") then
+                        -- The player already has a DietCola
                     else
                         local oldpos = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position
                         game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(430.275208, 10.7813654, 268.013153)
@@ -354,7 +355,6 @@ Toggles:AddToggle({
         end)
     end
 })
-
 
 Toggles:AddButton({
 	Name = "Kill All",
