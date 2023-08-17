@@ -446,7 +446,7 @@ Toggles:AddToggle({
                     local player = game.Players.LocalPlayer
                     local originalPosition = player.Character.HumanoidRootPart.Position
                     local targetPosition = Vector3.new(262.784332, 15.1500025, 7.68388748) -- Replace with your specific target position
-                    local waitTime = 5 -- Time in seconds to wait
+                    local waitTime = 1 -- Time in seconds to wait
 
                     -- Spawn a block under the player
                     local block = Instance.new("Part")
