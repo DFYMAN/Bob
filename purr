@@ -11,6 +11,15 @@ for i,v in pairs(workspace:GetDescendants()) do
 end    
 
 for i,v in pairs(workspace:GetDescendants()) do
+    if v.Name == "ItemName" and v.Parent.Name == "Configuration" and v.Parent.Parent.Name == "RustedKatana" and v.Value == "RustedKatana" then
+        _G.RustedKatanaProximity = v.Parent.Parent:FindFirstChild("ProximityPrompt")
+        -- pass
+    else
+        --- not pass
+    end    
+end   
+
+for i,v in pairs(workspace:GetDescendants()) do
     if v.Name == "ItemName" and v.Parent.Name == "Configuration" and v.Parent.Parent.Name == "DietCola" and v.Value == "DietCola" then
         _G.DietColaProximity = v.Parent.Parent:FindFirstChild("ProximityPrompt")
         -- pass
