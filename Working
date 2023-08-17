@@ -154,19 +154,20 @@ end
 Toggles:AddToggle({
     Name = "AutoGetMetalBat",
     Default = false,
-    Callback = function(AutoGetMetalBat)
+    Callback = function(autogetMetalBat)
         spawn(function()
-            if AutoGetMetalBat then
-                _G.getbatcrack = true
+            if autogetMetalBat then
+                _G.getMetalBat = true
                 notify("Furry Infection ", "AutoGetMetalBat On ")
             else
-                _G.getbatcrack = false
+                _G.getMetalBat = false
                 notify("Furry Infection ", "AutoGetMetalBat Off ")
             end
 
-            while _G.getbatcrack do
+            while _G.getMetalBat do
                 task.wait()
                 pcall(function()
+                    -- Check if the player's character has a "Metal Bat"
                     if game.Players.LocalPlayer.Backpack:FindFirstChild("Metal  Bat") or
                        game.Players.LocalPlayer.Character:FindFirstChild("Metal  Bat") then
                     else
@@ -178,7 +179,7 @@ Toggles:AddToggle({
                         until game.Players.LocalPlayer.Backpack:FindFirstChild("Metal  Bat") or
                               game.Players.LocalPlayer.Character:FindFirstChild("Metal  Bat")
                         game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(oldpos)
-                        notify("Furry Infection ", "Grabbed Bat ")
+                        notify("Furry Infection ", "Grabbed Metal Bat ")
                     end
                 end)
             end
@@ -189,22 +190,22 @@ Toggles:AddToggle({
 Toggles:AddToggle({
     Name = "AutoGetBat",
     Default = false,
-    Callback = function(autogetbatt)
+    Callback = function(autogetBat)
         spawn(function()
-            if autogetbatt then
-                _G.getbatcrack = true
+            if autogetBat then
+                _G.getBat = true
                 notify("Furry Infection ", "AutoGetBat On ")
             else
-                _G.getbatcrack = false
+                _G.getBat = false
                 notify("Furry Infection ", "AutoGetBat Off ")
             end
 
-            while _G.getbatcrack do
+            while _G.getBat do
                 task.wait()
                 pcall(function()
-                    -- Check if the player's character has a "Bat" or "Metal Bat"
+                    -- Check if the player's character has a "Bat"
                     if game.Players.LocalPlayer.Character:FindFirstChild("Bat") or
-                       game.Players.LocalPlayer.Backpack:FindFirstChild("Bat") or
+                       game.Players.LocalPlayer.Backpack:FindFirstChild("Bat") then
                     else
                         local oldpos = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position
                         game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(434.02526855469, 25.781383514404, 281.36041259766)
@@ -212,7 +213,7 @@ Toggles:AddToggle({
                             task.wait()
                             fireproximityprompt(_G.BatProximity, 2, false)
                         until game.Players.LocalPlayer.Character:FindFirstChild("Bat") or
-                              game.Players.LocalPlayer.Backpack:FindFirstChild("Bat") or
+                              game.Players.LocalPlayer.Backpack:FindFirstChild("Bat")
                         game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(oldpos)
                         notify("Furry Infection ", "Grabbed Bat ")
                     end
@@ -221,7 +222,6 @@ Toggles:AddToggle({
         end)
     end
 })
-
 Toggles:AddToggle({
     Name = "AutoGetDietCola",
     Default = false,
