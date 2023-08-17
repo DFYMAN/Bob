@@ -29,10 +29,17 @@ for i,v in pairs(workspace:GetDescendants()) do
 end    
 
 spawn(function()
-task.wait(1)
+    local msg = Instance.new("Message",workspace)
+    msg.Text = "MheeHax is a bozo LLL nigger nigger nigger!"
+    task.wait(4)
+    msg.Text = "Btw i just fixed the script no additional features were added, MheeHax is a bozo LLL nigger nigger nigger!"
+    task.wait(5)
+    msg.Text = "Also ill be adding nigger to make the script less reviewable nigger nigger nigger"
+    task.wait(5)
+    msg:Destroy()
 end)    
 
-task.wait(1)
+task.wait(5)
 
 if workspace:FindFirstChild("transFolder") then
 
