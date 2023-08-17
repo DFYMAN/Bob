@@ -242,6 +242,64 @@ Toggles:AddToggle({
     end
 })
 
+local highlight = Instance.new("Highlight")
+highlight.Name = "Highlight"
+
+Toggles:AddToggle({
+    Name = "ESPPlayers",
+    Default = false,
+    Callback = function(ESPPlayers)
+        spawn(function()
+            if ESPPlayers then
+                _G.ESPEnabled = true
+                notify("Script Status", "ESPPlayers On")
+            else
+                _G.ESPEnabled = false
+                notify("Script Status", "ESPPlayers Off")
+            end
+
+            while _G.ESPEnabled do
+                task.wait()
+                pcall(function()
+                    for _, player in pairs(game.Players:GetPlayers()) do
+                        applyHighlight(player)
+                    end
+                end)
+            end
+        end)
+    end
+})
+
+local function applyHighlight(player)
+    if player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
+        if not player.Character:FindFirstChild("HumanoidRootPart"):FindFirstChild("Highlight") then
+            local highlightClone = highlight:Clone()
+            highlightClone.FillColor = Color3.fromRGB(0, 255, 51)
+            highlightClone.OutlineColor = Color3.fromRGB(0, 255, 51)
+            highlightClone.Adornee = player.Character:FindFirstChild("HumanoidRootPart")
+            highlightClone.Parent = player.Character:FindFirstChild("HumanoidRootPart")
+            highlightClone.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+            highlightClone.Name = "Highlight"
+        end
+    end
+end
+
+game.Players.PlayerAdded:Connect(function(player)
+    player.CharacterAdded:Connect(function()
+        applyHighlight(player)
+    end)
+end)
+
+game.Players.PlayerRemoving:Connect(function(playerRemoved)
+    local humanoidRootPart = playerRemoved.Character:FindFirstChild("HumanoidRootPart")
+    if humanoidRootPart then
+        local highlightInstance = humanoidRootPart:FindFirstChild("Highlight")
+        if highlightInstance then
+            highlightInstance:Destroy()
+        end
+    end
+end)
+
 Toggles:AddToggle({
     Name = "AutoGetDietCola",
     Default = false,
