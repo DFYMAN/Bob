@@ -472,6 +472,52 @@ Toggles:AddToggle({
     end
 })
 
+Toggles:AddToggle({
+    Name = "test5",
+    Default = false,
+    Callback = function(test5)
+        spawn(function()
+            if GlowPlayers then
+                _G.Glowing = true
+                notify("Script Status", "test5 On")
+            else
+                _G.Glowing = false
+                notify("Script Status", "test5 Off")
+            end
+
+            while _G.Glowing do
+                task.wait()
+                pcall(function()
+                    for _, player in pairs(game.Players:GetPlayers()) do
+                        if player.Character and player.Character:FindFirstChild("Humanoid") then
+                            local character = player.Character
+                            local humanoid = character.Humanoid
+
+                            local teamColor = player.TeamColor -- Get the player's team color
+                            local glowEffect = Instance.new("PointLight")
+                            glowEffect.Brightness = 2
+                            glowEffect.Range = 10
+                            glowEffect.Color = teamColor.Color -- Set the glow color based on team
+                            glowEffect.Parent = character
+
+                            -- Calculate distance
+                            local playerDistance = (character.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
+
+                            -- Create UI text label
+                            local label = Instance.new("TextLabel")
+                            label.Text = string.format("Health: %d\nDistance: %.2f", humanoid.Health, playerDistance)
+                            label.Size = UDim2.new(0, 100, 0, 50)
+                            label.Position = UDim2.new(0, 0, 0, -60)
+                            label.TextColor3 = teamColor.Color -- Set label text color based on team
+                            label.Parent = character
+                        end
+                    end
+                end)
+            end
+        end)
+    end
+})
+
 Toggles:AddButton({
 	Name = "Kill All",
 	Callback = function()
