@@ -259,9 +259,9 @@ if game.Players.LocalPlayer.Character:FindFirstChild("bottle") or game.Players.L
     
 else    
     local oldpos = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position
-    game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(75.0997849, 24.4926491, 168.438278)
+    game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(77, 26, 168.438278)
     repeat task.wait()
-    game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(75.0997849, 24.4926491, 168.438278)    
+    game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(77, 26, 168.438278)    
     fireproximityprompt(_G.bottleProximity, 2, false)
     until game.Players.LocalPlayer.Character:FindFirstChild("bottle") or game.Players.LocalPlayer.Backpack:FindFirstChild("bottle") or game.Players.LocalPlayer.Backpack:FindFirstChild("bottle") or game.Players.LocalPlayer.Character:FindFirstChild("bottle")
     game:GetService("Players").localPlayer.Character:MoveTo(oldpos)
@@ -273,39 +273,6 @@ end)
 
     end    
 })
-
-Toggles:AddToggle({
-    Name = "test",
-    Default = false,
-    Callback = function(test)
-        spawn(function()
-        if test then
-            _G.test = true
-            notify("Furry Infection ","test On ")
-        else
-            _G.test = false
-            notify("Furry Infection ","test Off ")
-        end
-while _G.test do task.wait()  
-    pcall(function()
--- Get a reference to the Workspace and the model you want to use as a block
-local workspace = game:GetService("Workspace")
-local blockModel = game.ServerStorage.BlockModel -- Change this to the path of your block model in ServerStorage
-
--- Specify the position where you want to spawn the block
-local spawnPosition = Vector3.new(10, 5, 10) -- Change these coordinates as needed
-
--- Clone the block model and parent it to the Workspace
-local newBlock = blockModel:Clone()
-newBlock:SetPrimaryPartCFrame(CFrame.new(spawnPosition))
-newBlock.Parent = workspace
- end
-end) 
-end
-end)
-
-    end    
-}) 
 
 
 Toggles:AddButton({
