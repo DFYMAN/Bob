@@ -1,0 +1,691 @@
+pcall(function()
+    local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+
+for _, v in pairs(workspace:GetDescendants()) do
+        if v.Name == "ItemName" and v.Parent.Name == "Configuration" then
+            if v.Parent.Parent.Name == "Bat" and v.Value == "Metal  Bat" then
+                _G.MetalBatProximity = v.Parent.Parent:FindFirstChild("ProximityPrompt")
+            elseif v.Parent.Parent.Name == "DietCola" and v.Value == "DietCola" then
+                _G.DietColaProximity = v.Parent.Parent:FindFirstChild("ProximityPrompt")
+            elseif v.Parent.Parent.Name == "Cola" and v.Value == "Cola" then
+                _G.ColaProximity = v.Parent.Parent:FindFirstChild("ProximityPrompt")
+            elseif v.Parent.Parent.Name == "bottle" and v.Value == "bottle" then
+                _G.bottleProximity = v.Parent.Parent:FindFirstChild("ProximityPrompt")
+            end
+        end
+    end
+    
+spawn(function()
+    task.wait(1)
+end)    
+
+task.wait(1)
+
+if workspace:FindFirstChild("FagFolder") then
+
+else    
+
+local fagfolder1 = Instance.new("Folder",workspace)
+fagfolder1.Name = "FagFolder"
+
+for i,v in pairs(workspace:GetDescendants()) do
+    if v.Name == "Model 2 " or v.Name == "TransfurPart" or v.Name == "KillField" then
+        v.Parent = fagfolder1
+    end    
+end  
+
+end
+
+local fagfolder1 = workspace:FindFirstChild("FagFolder")
+
+local W1 = OrionLib:MakeWindow({Name = "Furry Infection  ", HidePremium = false, SaveConfig = false, ConfigFolder = "Furry Infection  "})
+
+OrionLib:MakeNotification({
+    Name = "Furry Infection ",
+    Content = "UseLess Person#7247",
+    Image = "rbxassetid://6890648157", --- rbxassetid://4483345998
+    Time = 5
+})
+
+function notify(name,text)
+    OrionLib:MakeNotification({
+    Name = name,
+    Content = text,
+    Image = "rbxassetid://6890648157", --- rbxassetid://4483345998
+    Time = 5
+})
+
+end
+
+local Toggles = W1:MakeTab({
+    Name = "Main",
+    Icon = "rbxassetid://6890648157", --- rbxassetid://4483345998
+    PremiumOnly = false
+})
+
+Toggles:AddToggle({
+    Name = "AntiEntityDeath",
+    Default = false,
+    Callback = function(fagjuice1)
+        if fagjuice1 then
+            fagfolder1.Parent = nil
+         else
+             fagfolder1.Parent = game:GetService("Workspace")
+         end
+    end    
+})
+
+Toggles:AddToggle({
+    Name = "KillAura",
+    Default = false,
+    Callback = function(kaura)
+        spawn(function()
+            if kaura then
+                _G.killaura = true
+                notify("Furry Infection ","KillAura On ")
+            else
+                _G.killaura = false
+                notify("Furry Infection ","KillAura Off ")
+            end
+while _G.killaura do wait()
+pcall(function()
+for i,v in pairs(game.Players:GetPlayers()) do
+
+        
+    local lp = game.Players.LocalPlayer
+    local character = v.Character
+    local charactername = v.Name
+    
+	if v:IsFriendsWith(game:GetService("Players").LocalPlayer.UserId) then
+		--- nothing
+	else
+        
+        if (lp.Character and lp.Character:FindFirstChild("Head") and character:FindFirstChild("Head")) then
+            local mag = (v.Character.Head.Position - lp.Character.Head.Position).Magnitude
+                  if mag < 25  then
+
+
+local ohInstance1 = v.Character.HumanoidRootPart
+local ohInstance2 = v.Character.Humanoid
+local ohVector33 = Vector3.new(game.Players.LocalPlayer.Character.HumanoidRootPart.Position)
+
+game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Tool").Remote.Hit:FireServer(ohInstance1, ohInstance2, ohVector33)
+end
+end
+end
+end
+end)
+end
+end)
+end
+})    
+
+Toggles:AddToggle({
+    Name = "AutoGetBat",
+    Default = false,
+    Callback = function(autogetbatt)
+        spawn(function()
+            if autogetbatt then
+                _G.getbatcrack = true
+                notify("Furry Infection ", "AutoGetBat On ")
+            else
+                _G.getbatcrack = false
+                notify("Furry Infection ", "AutoGetBat Off ")
+            end
+
+            while _G.getbatcrack do
+                task.wait()
+                pcall(function()
+                    -- Check if the player's character has a "Bat" or "Metal Bat"
+                    if game.Players.LocalPlayer.Character:FindFirstChild("Bat") or
+                       game.Players.LocalPlayer.Backpack:FindFirstChild("Bat") or
+                       game.Players.LocalPlayer.Backpack:FindFirstChild("Metal  Bat") or
+                       game.Players.LocalPlayer.Character:FindFirstChild("Metal  Bat") then
+                        -- The player already has a bat
+                    else
+                        local oldpos = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position
+                        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(434.02526855469, 25.781383514404, 281.36041259766)
+                        repeat
+                            task.wait()
+                            fireproximityprompt(_G.MetalBatProximity, 2, false)
+                        until game.Players.LocalPlayer.Character:FindFirstChild("Bat") or
+                              game.Players.LocalPlayer.Backpack:FindFirstChild("Bat") or
+                              game.Players.LocalPlayer.Backpack:FindFirstChild("Metal  Bat") or
+                              game.Players.LocalPlayer.Character:FindFirstChild("Metal  Bat")
+                        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(oldpos)
+                        notify("Furry Infection ", "Grabbed Bat ")
+                    end
+                end)
+            end
+        end)
+    end
+})
+
+Toggles:AddToggle({
+    Name = "AutoGetDietCola",
+    Default = false,
+    Callback = function(autogetDietCola)
+        spawn(function()
+        if autogetDietCola then
+            _G.getDietCola = true
+            notify("Furry Infection ","AutoGetDietCola On ")
+        else
+            _G.getDietCola = false
+            notify("Furry Infection ","AutoGetDietCola Off ")
+        end
+while _G.getDietCola do task.wait()  
+    pcall(function()
+if game.Players.LocalPlayer.Character:FindFirstChild("DietCola") or game.Players.LocalPlayer.Backpack:FindFirstChild("DietCola") or game.Players.LocalPlayer.Backpack:FindFirstChild("DietCola") or game.Players.LocalPlayer.Character:FindFirstChild("DietCola") then
+    
+else    
+    local oldpos = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position
+    game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(430.275208, 10.7813654, 268.013153)
+    repeat task.wait()
+    game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(430.275208, 10.7813654, 268.013153)    
+    fireproximityprompt(_G.DietColaProximity, 2, false)
+    until game.Players.LocalPlayer.Character:FindFirstChild("DietCola") or game.Players.LocalPlayer.Backpack:FindFirstChild("DietCola") or game.Players.LocalPlayer.Backpack:FindFirstChild("DietCola") or game.Players.LocalPlayer.Character:FindFirstChild("DietCola")
+    game:GetService("Players").localPlayer.Character:MoveTo(oldpos)
+    notify("Furry Infection ","Grabbed DietCola ")
+end
+end) 
+end
+end)
+
+    end    
+})
+
+Toggles:AddToggle({
+    Name = "AutoGetCola",
+    Default = false,
+    Callback = function(autogetCola)
+        spawn(function()
+        if autogetCola then
+            _G.getCola = true
+            notify("Furry Infection ","AutoGetCola On ")
+        else
+            _G.getCola = false
+            notify("Furry Infection ","AutoGetCola Off ")
+        end
+while _G.getCola do task.wait()  
+    pcall(function()
+if game.Players.LocalPlayer.Character:FindFirstChild("Cola") or game.Players.LocalPlayer.Backpack:FindFirstChild("Cola") or game.Players.LocalPlayer.Backpack:FindFirstChild("Cola") or game.Players.LocalPlayer.Character:FindFirstChild("Cola") then
+    
+else    
+    local oldpos = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position
+    game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(261.349701, 10.2726746, 84.8000259)
+    repeat task.wait()
+    game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(261.349701, 10.2726746, 84.8000259)    
+    fireproximityprompt(_G.ColaProximity, 2, false)
+    until game.Players.LocalPlayer.Character:FindFirstChild("Cola") or game.Players.LocalPlayer.Backpack:FindFirstChild("Cola") or game.Players.LocalPlayer.Backpack:FindFirstChild("Cola") or game.Players.LocalPlayer.Character:FindFirstChild("Cola")
+    game:GetService("Players").localPlayer.Character:MoveTo(oldpos)
+    notify("Furry Infection ","Grabbed Cola ")
+end
+end) 
+end
+end)
+
+    end    
+})
+
+Toggles:AddToggle({
+    Name = "AutoGetbottle",
+    Default = false,
+    Callback = function(autogetbottle)
+        spawn(function()
+        if autogetbottle then
+            _G.getbottle = true
+            notify("Furry Infection ","AutoGetbottle On ")
+        else
+            _G.getbottle = false
+            notify("Furry Infection ","AutoGetbottle Off ")
+        end
+while _G.getbottle do task.wait()  
+    pcall(function()
+if game.Players.LocalPlayer.Character:FindFirstChild("Bottle") or game.Players.LocalPlayer.Backpack:FindFirstChild("Bottle") or game.Players.LocalPlayer.Backpack:FindFirstChild("bottle") or game.Players.LocalPlayer.Character:FindFirstChild("bottle") then
+    
+else    
+    local oldpos = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position
+    game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(77, 26, 168.438278)
+    repeat task.wait()
+    game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(77, 26, 168.438278)    
+    fireproximityprompt(_G.bottleProximity, 2, false)
+    until game.Players.LocalPlayer.Character:FindFirstChild("Bottle") or game.Players.LocalPlayer.Backpack:FindFirstChild("Bottle") or game.Players.LocalPlayer.Backpack:FindFirstChild("bottle") or game.Players.LocalPlayer.Character:FindFirstChild("bottle")
+    game:GetService("Players").localPlayer.Character:MoveTo(oldpos)
+    notify("Furry Infection ","Grabbed bottle ")
+end
+end) 
+end
+end)
+
+    end    
+})
+
+Toggles:AddToggle({
+    Name = "AutoGetKatana",
+    Default = false,
+    Callback = function(autogetkatana)
+        spawn(function()
+            if autogetkatana then
+                _G.getbatcrack = true
+                notify("Furry Infection ", "AutoGetKatana On ")
+            else
+                _G.getbatcrack = false
+                notify("Furry Infection ", "AutoGetKatana Off ")
+            end
+
+            while _G.getbatcrack do
+                task.wait()
+                pcall(function()
+                    if game.Players.LocalPlayer.Character:FindFirstChild("RustedKatana") or
+                       game.Players.LocalPlayer.Backpack:FindFirstChild("RustedKatana") or
+                    else
+                        local oldpos = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position
+                        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(195, 22, 369)
+                        repeat
+                            task.wait()
+                            fireproximityprompt(_G.RustedKatanaProximity, 2, false)
+                        until game.Players.LocalPlayer.Character:FindFirstChild("RustedKatana") or
+                              game.Players.LocalPlayer.Backpack:FindFirstChild("RustedKatana") or
+                        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(oldpos)
+                        notify("Furry Infection ", "Grabbed Katana ")
+                    end
+                end)
+            end
+        end)
+    end
+})
+
+Toggles:AddToggle({
+    Name = "test",
+    Default = false,
+    Callback = function(autogetbottle)
+        spawn(function()
+            if autogetbottle then
+                _G.getbottle = true
+                notify("Furry Infection ", "AutoGetbottle On ")
+            else
+                _G.getbottle = false
+                notify("Furry Infection ", "AutoGetbottle Off ")
+            end
+
+            while _G.getbottle do
+                task.wait()
+                pcall(function()
+                    -- Check if the player's character has a "bottle"
+                    if game.Players.LocalPlayer.Character:FindFirstChild("bottle") or
+                       game.Players.LocalPlayer.Backpack:FindFirstChild("bottle") then
+                        -- The player already has a bottle
+                    else
+                        local oldpos = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position
+                        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(77, 26, 168.438278)
+                        repeat
+                            task.wait()
+                            fireproximityprompt(_G.bottleProximity, 2, false)
+                        until game.Players.LocalPlayer.Character:FindFirstChild("bottle") or
+                              game.Players.LocalPlayer.Backpack:FindFirstChild("bottle")
+                        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(oldpos)
+                        notify("Furry Infection ", "Grabbed bottle ")
+                    end
+                end)
+            end
+        end)
+    end
+})
+
+Toggles:AddToggle({
+    Name = "test69",
+    Default = false,
+    Callback = function(autogetDietCola)
+        spawn(function()
+            if autogetDietCola then
+                notify("Furry Infection ", "AutoGetDietCola On ")
+            else
+                notify("Furry Infection ", "AutoGetDietCola Off ")
+            end
+
+            while autogetDietCola do
+                task.wait()
+                pcall(function()
+                    -- Check if the player's character has a "DietCola"
+                    if not (game.Players.LocalPlayer.Character:FindFirstChild("Diet Cola") or
+                            game.Players.LocalPlayer.Backpack:FindFirstChild("Diet Cola")) then
+                        local spawnPos = Vector3.new(430.275208, 10.7813654, 268.013153)
+                        local teleportPos = Vector3.new(150.23819, 28, 55.2370529)
+
+                        local block = Instance.new("Part")
+                        block.Size = Vector3.new(10, 1, 10)
+                        block.Anchored = true
+                        block.Position = spawnPos
+                        block.Parent = game.Workspace
+
+                        -- Teleport to spawn position
+                        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(spawnPos)
+                        repeat
+                            task.wait()
+                        until game:GetService("Players").LocalPlayer.Character.Humanoid:GetState() == Enum.HumanoidStateType.Physics
+
+                        -- Fire proximity prompt to get DietCola
+                        fireproximityprompt(_G.DietColaProximity, 2, false)
+                        repeat
+                            task.wait()
+                        until game.Players.LocalPlayer.Character:FindFirstChild("DietCola") or
+                              game.Players.LocalPlayer.Backpack:FindFirstChild("DietCola")
+
+                        -- Teleport to specific position
+                        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(teleportPos)
+
+                        -- Remove the block
+                        block:Destroy()
+
+                        notify("Furry Infection ", "Grabbed DietCola ")
+                    end
+                end)
+            end
+        end)
+    end
+})
+
+Toggles:AddToggle({
+    Name = "420",
+    Default = false,
+    Callback = function(autogetCola)
+        spawn(function()
+            if autogetCola then
+                _G.getCola = true
+                notify("Furry Infection ","AutoGetCola On ")
+            else
+                _G.getCola = false
+                notify("Furry Infection ","AutoGetCola Off ")
+            end
+
+            while _G.getCola do
+                task.wait()
+                pcall(function()
+                    -- Check if the player's character has a "Cola"
+                    if not (game.Players.LocalPlayer.Character:FindFirstChild("Cola") or
+                            game.Players.LocalPlayer.Backpack:FindFirstChild("Cola")) then
+                        local spawnPos = Vector3.new(261.349701, 10.2726746, 84.8000259)
+
+                        -- Spawn a block under the player
+                        local block = Instance.new("Part")
+                        block.Size = Vector3.new(10, 1, 10)
+                        block.Anchored = true
+                        block.Position = spawnPos + Vector3.new(0, -5, 0)
+                        block.Parent = game.Workspace
+
+                        -- Teleport to spawn position
+                        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(spawnPos)
+                        repeat
+                            task.wait()
+                        until game:GetService("Players").LocalPlayer.Character.Humanoid:GetState() == Enum.HumanoidStateType.Physics
+
+                        -- Fire proximity prompt to get Cola
+                        fireproximityprompt(_G.ColaProximity, 2, false)
+                        repeat
+                            task.wait()
+                        until game.Players.LocalPlayer.Character:FindFirstChild("Cola") or
+                              game.Players.LocalPlayer.Backpack:FindFirstChild("Cola")
+
+                        -- Teleport back to original position
+                        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(spawnPos)
+
+                        -- Remove the block
+                        block:Destroy()
+
+                        notify("Furry Infection ", "Grabbed Cola ")
+                    end
+                end)
+            end
+        end)
+    end
+})
+
+Toggles:AddToggle({
+    Name = "RareFur",
+    Default = false,
+    Callback = function(RareFur)
+        spawn(function()
+            if RareFur then
+                _G.RareFur = true
+                notify("Script Status", "RareFur On")
+            else
+                _G.RareFur = false
+                notify("Script Status", "RareFur Off")
+            end
+
+            while _G.RareFur do
+                task.wait()
+                pcall(function()
+                    local player = game.Players.LocalPlayer
+                    local originalPosition = player.Character.HumanoidRootPart.Position
+                    local targetPosition = Vector3.new(262.784332, 15.1500025, 7.68388748) -- Replace with your specific target position
+                    local waitTime = 1 -- Time in seconds to wait
+
+                    -- Spawn a block under the player
+                    local block = Instance.new("Part")
+                    block.Size = Vector3.new(10, 1, 10)
+                    block.Anchored = true
+                    block.Position = Vector3.new(262.784332, 10, 7.68388748) -- Use Vector3.new here
+                    block.Parent = game.Workspace
+
+                    -- Teleport to the target position
+                    player.Character.HumanoidRootPart.CFrame = CFrame.new(targetPosition)
+
+                    -- Wait for the specified time
+                    wait(waitTime)
+
+                    -- Return to the original position
+                    player.Character.HumanoidRootPart.CFrame = CFrame.new(originalPosition)
+
+                    -- Remove the block
+                    block:Destroy()
+                end)
+            end
+        end)
+    end
+})
+
+
+
+Toggles:AddToggle({
+	Name = "Kill All",
+	Callback = function()
+	    pcall(function()
+      	for i,v in pairs(game.Players:GetPlayers()) do
+            if game.Players.LocalPlayer.Character:FindFirstChild("Bat") or game.Players.LocalPlayer.Backpack:FindFirstChild("Bat") or game.Players.LocalPlayer.Backpack:FindFirstChild("Metal  Bat") or game.Players.LocalPlayer.Character:FindFirstChild("Metal  Bat") then
+            if v.Character.Name == game.Players.LocalPlayer.Character.Name then
+            
+            else
+            if v.Character:FindFirstChild("Humanoid").Health <= 0 or v.Character:FindFirstChild("ForceField") then
+            
+            else    
+            if v.Character:FindFirstChild("LLeft Leg") or v.Character:FindFirstChild("Left Leg"):FindFirstChild("LLeft Leg") then
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(v.Character.HumanoidRootPart.Position)
+                oldposition = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
+                repeat wait()
+                    if game.Players.LocalPlayer.Character:FindFirstChild("Bat") or game.Players.LocalPlayer.Character:FindFirstChild("Metal  Bat") then
+                    task.wait()
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(v.Character.HumanoidRootPart.Position+Vector3.new(0,3,0))
+                    local ohInstance1 = v.Character.HumanoidRootPart
+                    local ohInstance2 = v.Character.Humanoid
+                    local ohVector33 = Vector3.new(game.Players.LocalPlayer.Character.HumanoidRootPart.Position)
+
+                    game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Tool").Remote.Hit:FireServer(ohInstance1, ohInstance2, ohVector33)
+                    elseif game.Players.LocalPlayer.Backpack:FindFirstChild("Bat") then
+                        game.Players.LocalPlayer.Character.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack:FindFirstChild("Bat"))
+                    elseif game.Players.LocalPlayer.Backpack:FindFirstChild("Metal  Bat") then
+                        game.Players.LocalPlayer.Character.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack:FindFirstChild("Metal  Bat"))
+                    elseif not game.Players.LocalPlayer.Backpack:FindFirstChild("Bat") or game.Players.LocalPlayer.Backpack:FindFirstChild("Metal  Bat") then
+                        local oldpos = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position
+                        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(434.0252685546875, 25.781383514404297, 281.36041259765625)
+                        repeat task.wait()
+                        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(434.0252685546875, 25.781383514404297, 281.36041259765625)    
+                        fireproximityprompt(_G.MetalBatProximity, 2, false)
+                        until game.Players.LocalPlayer.Character:FindFirstChild("Bat") or game.Players.LocalPlayer.Backpack:FindFirstChild("Bat") or game.Players.LocalPlayer.Backpack:FindFirstChild("Metal  Bat") or game.Players.LocalPlayer.Character:FindFirstChild("Metal  Bat")
+                        game:GetService("Players").localPlayer.Character:MoveTo(oldpos)
+                        if game.Players.LocalPlayer.Backpack:FindFirstChild("Bat") then
+                            game.Players.LocalPlayer.Character.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack:FindFirstChild("Bat"))
+                        elseif game.Players.LocalPlayer.Backpack:FindFirstChild("Metal  Bat") then    
+                            game.Players.LocalPlayer.Character.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack:FindFirstChild("Metal  Bat"))
+                        end    
+                    end
+            until v.Character.Humanoid.Health <= 0
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(oldposition)
+            end
+        end
+      	end
+else
+    local oldpos = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position
+    game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(434.0252685546875, 25.781383514404297, 281.36041259765625)
+    repeat task.wait()
+    game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(434.0252685546875, 25.781383514404297, 281.36041259765625)    
+    fireproximityprompt(_G.MetalBatProximity, 2, false)
+    until game.Players.LocalPlayer.Character:FindFirstChild("Bat") or game.Players.LocalPlayer.Backpack:FindFirstChild("Bat") or game.Players.LocalPlayer.Backpack:FindFirstChild("Metal  Bat") or game.Players.LocalPlayer.Character:FindFirstChild("Metal  Bat")
+    if game.Players.LocalPlayer.Backpack:FindFirstChild("Bat") then
+        game.Players.LocalPlayer.Character.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack:FindFirstChild("Bat"))
+    elseif game.Players.LocalPlayer.Backpack:FindFirstChild("Metal  Bat") then    
+        game.Players.LocalPlayer.Character.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack:FindFirstChild("Metal  Bat"))
+    end  
+    game:GetService("Players").localPlayer.Character:MoveTo(oldpos)
+end    
+end
+	    end) 
+  end
+})
+
+Toggles:AddToggle({
+	Name = "Loop Kill All",
+	Callback = function(lkillall)
+	    spawn(function()
+	        if lkillall then
+	            _G.killall = true
+	            notify("Furry Infection Fucker","Loop Kill All On ")
+	        else
+	            _G.killall = false
+	            notify("Furry Infection Fucker","Loop Kill All Off ")
+	        end 
+
+while _G.killall do task.wait(1)
+	    pcall(function()
+      	for i,v in pairs(game.Players:GetPlayers()) do
+            if game.Players.LocalPlayer.Character:FindFirstChild("Bat") or game.Players.LocalPlayer.Backpack:FindFirstChild("Bat") or game.Players.LocalPlayer.Backpack:FindFirstChild("Metal  Bat") or game.Players.LocalPlayer.Character:FindFirstChild("Metal  Bat") then
+            if v.Character.Name == game.Players.LocalPlayer.Character.Name then
+            
+            else
+            if v.Character:FindFirstChild("Humanoid").Health <= 0 or v.Character:FindFirstChild("ForceField") then
+            
+            else    
+            if v.Character:FindFirstChild("LLeft Leg") or v.Character:FindFirstChild("Left Leg"):FindFirstChild("LLeft Leg") then
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(v.Character.HumanoidRootPart.Position)
+                oldposition = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
+                repeat task.wait()
+                    if game.Players.LocalPlayer.Character:FindFirstChild("Bat") or game.Players.LocalPlayer.Character:FindFirstChild("Metal  Bat") then
+                    task.wait()
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(v.Character.HumanoidRootPart.Position+Vector3.new(0,5,0))
+                    local ohInstance1 = v.Character.HumanoidRootPart
+                    local ohInstance2 = v.Character.Humanoid
+                    local ohVector33 = Vector3.new(game.Players.LocalPlayer.Character.HumanoidRootPart.Position)
+
+                    game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Tool").Remote.Hit:FireServer(ohInstance1, ohInstance2, ohVector33)
+                    elseif game.Players.LocalPlayer.Backpack:FindFirstChild("Bat") then
+                        game.Players.LocalPlayer.Character.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack:FindFirstChild("Bat"))
+                    elseif game.Players.LocalPlayer.Backpack:FindFirstChild("Metal  Bat") then
+                        game.Players.LocalPlayer.Character.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack:FindFirstChild("Metal  Bat"))
+                    elseif not game.Players.LocalPlayer.Backpack:FindFirstChild("Bat") or game.Players.LocalPlayer.Backpack:FindFirstChild("Metal  Bat") then
+                        local oldpos = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position
+                        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(434.0252685546875, 25.781383514404297, 281.36041259765625)
+                        repeat task.wait()
+                        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(434.0252685546875, 25.781383514404297, 281.36041259765625)    
+                        fireproximityprompt(_G.MetalBatProximity, 2, false)
+                        until game.Players.LocalPlayer.Character:FindFirstChild("Bat") or game.Players.LocalPlayer.Backpack:FindFirstChild("Bat") or game.Players.LocalPlayer.Backpack:FindFirstChild("Metal  Bat") or game.Players.LocalPlayer.Character:FindFirstChild("Metal  Bat")
+                        game:GetService("Players").localPlayer.Character:MoveTo(oldpos)
+                        if game.Players.LocalPlayer.Backpack:FindFirstChild("Bat") then
+                            game.Players.LocalPlayer.Character.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack:FindFirstChild("Bat"))
+                        elseif game.Players.LocalPlayer.Backpack:FindFirstChild("Metal  Bat") then    
+                            game.Players.LocalPlayer.Character.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack:FindFirstChild("Metal  Bat"))
+                        end    
+                    end
+            until v.Character.Humanoid.Health <= 0
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(oldposition)
+            end
+        end
+      	end
+else
+    local oldpos = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position
+    game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(434.0252685546875, 25.781383514404297, 281.36041259765625)
+    repeat task.wait()
+    game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(434.0252685546875, 25.781383514404297, 281.36041259765625)    
+    fireproximityprompt(_G.MetalBatProximity, 2, false)
+    until game.Players.LocalPlayer.Character:FindFirstChild("Bat") or game.Players.LocalPlayer.Backpack:FindFirstChild("Bat") or game.Players.LocalPlayer.Backpack:FindFirstChild("Metal  Bat") or game.Players.LocalPlayer.Character:FindFirstChild("Metal  Bat")
+    if game.Players.LocalPlayer.Backpack:FindFirstChild("Bat") then
+        game.Players.LocalPlayer.Character.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack:FindFirstChild("Bat"))
+    elseif game.Players.LocalPlayer.Backpack:FindFirstChild("Metal  Bat") then    
+        game.Players.LocalPlayer.Character.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack:FindFirstChild("Metal  Bat"))
+    end  
+    game:GetService("Players").localPlayer.Character:MoveTo(oldpos)
+end    
+end
+end)
+end
+end)
+  end
+})
+
+Toggles:AddToggle({
+	Name = "Auto Escape Grab",
+	Callback = function(antigrabbed)
+	    spawn(function()
+	        if antigrabbed then
+	            _G.autoescapegrab = true
+	            notify("Furry Infection ","Auto Escape Grab On ")
+	       else 
+	           _G.autoescapegrab = false
+	           notify("Furry Infection ","Auto Escape Grab Off ")
+	        end
+	        
+local noescapeser
+noescapeser = game:GetService("RunService").RenderStepped:Connect(function()
+pcall(function()
+if _G.autoescapegrab then  
+    game.Players.LocalPlayer.PlayerGui.EscapeGui.Remote.Hit:InvokeServer()
+else
+    noescapeser:Disconnect()
+end    
+end)
+end)
+end)
+end
+})	
+
+Toggles:AddToggle({
+	Name = "Less Cooldown",
+	Callback = function(lesscd)
+	    spawn(function()
+	        if lesscd then
+	            _G.lesscooldown = true
+	            notify("Furry Infection ","Less Cooldown On ")
+	        else
+	            _G.lesscooldown = false
+	            notify("Furry Infection ","Less Cooldown Off ")
+	        end 
+        end)
+    end
+})
+
+local mt = getrawmetatable(game)
+make_writeable(mt)
+
+local namecall = mt.__namecall
+mt.__namecall = newcclosure(function(self, ...)
+    local method = getnamecallmethod()
+    local args = {...}
+
+    if method == "Invoke" and tostring(self) == "Cooldown" then
+    if _G.lesscooldown then    
+        args[1] = 0
+    end
+    end
+    return namecall(self, table.unpack(args))
+end) 
+
+end)
