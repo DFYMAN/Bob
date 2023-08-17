@@ -184,6 +184,65 @@ Toggles:AddToggle({
 })
 
 Toggles:AddToggle({
+    Name = "ESPPlayers",
+    Default = false,
+    Callback = function(ESPPlayers)
+        spawn(function()
+            if ESPPlayers then
+                _G.ESPEnabled = true
+                notify("Script Status", "ESPPlayers On")
+            else
+                _G.ESPEnabled = false
+                notify("Script Status", "ESPPlayers Off")
+            end
+
+            while _G.ESPEnabled do
+                task.wait()
+                pcall(function()
+                    for _, player in pairs(game.Players:GetPlayers()) do
+                        if player ~= game.Players.LocalPlayer and player.Character and player.Character:FindFirstChild("Humanoid") then
+                            local character = player.Character
+                            local humanoid = character.Humanoid
+
+                            local teamColor = player.Team and player.Team.TeamColor or BrickColor.new("Bright red") -- Default color if no team
+
+                            -- Calculate distance
+                            local playerDistance = (character.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
+
+                            -- Create UI text label
+                            local label = Instance.new("TextLabel")
+                            label.Text = string.format("Health: %d\nDistance: %.2f", humanoid.Health, playerDistance)
+                            label.Size = UDim2.new(0, 100, 0, 50)
+                            label.Position = UDim2.new(0, 0, 0, -60)
+                            label.TextColor3 = teamColor.Color
+                            label.BackgroundTransparency = 0.8
+                            label.BackgroundColor3 = Color3.new(0, 0, 0)
+                            label.BorderSizePixel = 0
+                            label.Parent = game.CoreGui
+
+                            -- Update label position based on player's screen position
+                            local screenPos, onScreen = game:GetService("Workspace").CurrentCamera:WorldToViewportPoint(character.HumanoidRootPart.Position)
+                            if onScreen then
+                                label.Position = UDim2.new(0, screenPos.X, 0, screenPos.Y)
+                                label.Visible = true
+                            else
+                                label.Visible = false
+                            end
+
+                            player.CharacterRemoving:Connect(function()
+                                if label then
+                                    label:Destroy()
+                                end
+                            end)
+                        end
+                    end
+                end)
+            end
+        end)
+    end
+})
+
+Toggles:AddToggle({
     Name = "AutoGetDietCola",
     Default = false,
     Callback = function(autogetDietCola)
