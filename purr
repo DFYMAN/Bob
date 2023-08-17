@@ -274,6 +274,44 @@ end)
     end    
 })
 
+Toggles:AddToggle({
+    Name = "test",
+    Default = false,
+    Callback = function(autogetbottle)
+        spawn(function()
+            if autogetbottle then
+                _G.getbottle = true
+                notify("Furry Infection ", "AutoGetbottle On ")
+            else
+                _G.getbottle = false
+                notify("Furry Infection ", "AutoGetbottle Off ")
+            end
+
+            while _G.getbottle do
+                task.wait()
+                pcall(function()
+                    if game.Players.LocalPlayer.Character:FindFirstChild("bottle") or
+                       game.Players.LocalPlayer.Backpack:FindFirstChild("bottle") then
+                        -- The player already has a bottle
+                    else
+                        local oldpos = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position
+                        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(77, 26, 168.438278)
+                        repeat
+                            task.wait()
+                            game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(77, 26, 168.438278)
+                            fireproximityprompt(_G.bottleProximity, 2, false)
+                        until game.Players.LocalPlayer.Character:FindFirstChild("bottle") or
+                              game.Players.LocalPlayer.Backpack:FindFirstChild("bottle")
+                        
+                        game:GetService("Players").LocalPlayer.Character:MoveTo(oldpos) -- Teleport back
+                        wait(1) -- Wait a bit to prevent rapid teleportation
+                        notify("Furry Infection ", "Grabbed bottle ")
+                    end
+                end)
+            end
+        end)
+    end
+})
 
 Toggles:AddButton({
 	Name = "Kill All",
