@@ -33,10 +33,10 @@ end
 
 local fagfolder1 = workspace:FindFirstChild("FagFolder")
 
-local W1 = OrionLib:MakeWindow({Name = "Furry Infection Fucker nigger", HidePremium = false, SaveConfig = false, ConfigFolder = "Furry Infection Fucker nigger"})
+local W1 = OrionLib:MakeWindow({Name = "Furry Infection  ", HidePremium = false, SaveConfig = false, ConfigFolder = "Furry Infection  "})
 
 OrionLib:MakeNotification({
-    Name = "Furry Infection Fucker",
+    Name = "Furry Infection ",
     Content = "UseLess Person#7247",
     Image = "rbxassetid://6890648157", --- rbxassetid://4483345998
     Time = 5
@@ -77,10 +77,10 @@ Toggles:AddToggle({
         spawn(function()
             if kaura then
                 _G.killaura = true
-                notify("Furry Infection Fucker","KillAura On nigger")
+                notify("Furry Infection ","KillAura On ")
             else
                 _G.killaura = false
-                notify("Furry Infection Fucker","KillAura Off nigger")
+                notify("Furry Infection ","KillAura Off ")
             end
 while _G.killaura do wait()
 pcall(function()
@@ -122,10 +122,10 @@ Toggles:AddToggle({
         spawn(function()
         if autogetbatt then
             _G.getbatcrack = true
-            notify("Furry Infection Fucker","AutoGetBat On nigger")
+            notify("Furry Infection ","AutoGetBat On ")
         else
             _G.getbatcrack = false
-            notify("Furry Infection Fucker","AutoGetBat Off nigger")
+            notify("Furry Infection ","AutoGetBat Off ")
         end
 while _G.getbatcrack do task.wait()  
     pcall(function()
@@ -139,7 +139,7 @@ else
     fireproximityprompt(_G.MetalBatProximity, 2, false)
     until game.Players.LocalPlayer.Character:FindFirstChild("Bat") or game.Players.LocalPlayer.Backpack:FindFirstChild("Bat") or game.Players.LocalPlayer.Backpack:FindFirstChild("Metal  Bat") or game.Players.LocalPlayer.Character:FindFirstChild("Metal  Bat")
     game:GetService("Players").localPlayer.Character:MoveTo(oldpos)
-    notify("Furry Infection Fucker","Grabbed Bat nigger")
+    notify("Furry Infection ","Grabbed Bat ")
 end
 end) 
 end
@@ -220,10 +220,10 @@ Toggles:AddToggle({
 	    spawn(function()
 	        if lkillall then
 	            _G.killall = true
-	            notify("Furry Infection Fucker","Loop Kill All On nigger")
+	            notify("Furry Infection Fucker","Loop Kill All On ")
 	        else
 	            _G.killall = false
-	            notify("Furry Infection Fucker","Loop Kill All Off nigger")
+	            notify("Furry Infection Fucker","Loop Kill All Off ")
 	        end 
 
 while _G.killall do task.wait(1)
@@ -298,10 +298,10 @@ Toggles:AddToggle({
 	    spawn(function()
 	        if antigrabbed then
 	            _G.autoescapegrab = true
-	            notify("Furry Infection Fucker","Auto Escape Grab On nigger")
+	            notify("Furry Infection Fucker","Auto Escape Grab On ")
 	       else 
 	           _G.autoescapegrab = false
-	           notify("Furry Infection Fucker","Auto Escape Grab Off nigger")
+	           notify("Furry Infection Fucker","Auto Escape Grab Off ")
 	        end
 	        
 local noescapeser
@@ -324,10 +324,10 @@ Toggles:AddToggle({
 	    spawn(function()
 	        if lesscd then
 	            _G.lesscooldown = true
-	            notify("Furry Infection Fucker","Less Cooldown On nigger")
+	            notify("Furry Infection ","Less Cooldown On ")
 	        else
 	            _G.lesscooldown = false
-	            notify("Furry Infection Fucker","Less Cooldown Off ")
+	            notify("Furry Infection ","Less Cooldown Off ")
 	        end 
         end)
     end
