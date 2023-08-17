@@ -298,10 +298,10 @@ Toggles:AddToggle({
 	    spawn(function()
 	        if antigrabbed then
 	            _G.autoescapegrab = true
-	            notify("Furry Infection Fucker","Auto Escape Grab On ")
+	            notify("Furry Infection ","Auto Escape Grab On ")
 	       else 
 	           _G.autoescapegrab = false
-	           notify("Furry Infection Fucker","Auto Escape Grab Off ")
+	           notify("Furry Infection ","Auto Escape Grab Off ")
 	        end
 	        
 local noescapeser
