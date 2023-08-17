@@ -199,7 +199,7 @@ Toggles:AddToggle({
             while _G.getDietCola do
                 task.wait()
                 pcall(function()
-                    if game.Players.LocalPlayer.Character:FindFirstChild("DietCola") or
+                    if game.Players.LocalPlayer.Character:FindFirstChild("Diet Cola") or
                        game.Players.LocalPlayer.Backpack:FindFirstChild("DietCola") then
                         -- The player already has a "DietCola"
                     else
@@ -216,7 +216,7 @@ Toggles:AddToggle({
                         repeat task.wait()
                             game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(430.275208, 10.7813654, 268.013153)
                             fireproximityprompt(_G.DietColaProximity, 2, false)
-                        until game.Players.LocalPlayer.Character:FindFirstChild("DietCola") or
+                        until game.Players.LocalPlayer.Character:FindFirstChild("Diet Cola") or
                               game.Players.LocalPlayer.Backpack:FindFirstChild("DietCola")
                         game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(oldpos)
                         notify("Furry Infection ", "Grabbed DietCola ")
