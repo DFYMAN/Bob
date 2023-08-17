@@ -474,7 +474,17 @@ Toggles:AddToggle({
 
 Toggles:AddToggle({
 	Name = "Kill All",
-	Callback = function()
+	Default = false,
+   	Callback = function(KillAll)
+        spawn(function()
+            if Kill All then
+                _G.KillAll = true
+                notify("Script Status", "Kill All On")
+            else
+                _G.KillAll = false
+                notify("Script Status", "Kill All Off")
+            end
+
 	    pcall(function()
       	for i,v in pairs(game.Players:GetPlayers()) do
             if game.Players.LocalPlayer.Character:FindFirstChild("Bat") or game.Players.LocalPlayer.Backpack:FindFirstChild("Bat") or game.Players.LocalPlayer.Backpack:FindFirstChild("Metal  Bat") or game.Players.LocalPlayer.Character:FindFirstChild("Metal  Bat") then
