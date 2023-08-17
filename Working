@@ -474,6 +474,7 @@ Toggles:AddToggle({
 
 Toggles:AddToggle({
     Name = "Kill All",
+    Default = false,
     Callback = function()
         pcall(function()
             for i,v in pairs(game.Players:GetPlayers()) do
