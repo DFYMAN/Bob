@@ -472,7 +472,7 @@ Toggles:AddToggle({
     end
 })
 
-Toggles:AddButton({
+Toggles:AddToggle({
 	Name = "Kill All",
 	Callback = function()
 	    pcall(function()
@@ -536,61 +536,6 @@ end
 end
 	    end) 
   end
-})
-
-Toggles:AddButton({
-    Name = "Kill Allv2",
-    Callback = function()
-        pcall(function()
-            local player = game.Players.LocalPlayer
-
-            local batTool = player.Backpack:FindFirstChild("Bat")
-            if not batTool then
-                batTool = player.Backpack:FindFirstChild("Metal  Bat")
-            end
-
-            if not batTool then
-                notify("Script Status", "Bat tool not found in backpack.")
-                return
-            end
-
-            local batEquipped = false
-            local oldPosition = player.Character.HumanoidRootPart.Position
-
-            for _, targetPlayer in pairs(game.Players:GetPlayers()) do
-                if targetPlayer ~= player and targetPlayer.Character and targetPlayer.Character:FindFirstChild("Humanoid") then
-                    local targetCharacter = targetPlayer.Character
-                    local targetHumanoid = targetCharacter.Humanoid
-
-                    if targetHumanoid.Health > 0 and not targetCharacter:FindFirstChild("ForceField") then
-                        if not batEquipped then
-                            batEquipped = true
-                            player.Character.Humanoid:EquipTool(batTool)
-                        end
-
-                        local targetPosition = targetCharacter.HumanoidRootPart.Position
-
-                        player.Character.HumanoidRootPart.CFrame = CFrame.new(targetPosition + Vector3.new(0, 3, 0))
-                        
-                        local ohInstance1 = targetCharacter.HumanoidRootPart
-                        local ohInstance2 = targetCharacter.Humanoid
-                        local ohVector3 = Vector3.new(targetPosition)
-
-                        game.ReplicatedStorage:WaitForChild("Hit"):FireServer(ohInstance1, ohInstance2, ohVector3)
-
-                        repeat wait() until targetHumanoid.Health <= 0 or not player.Character:FindFirstChild("Bat") or not player.Character:FindFirstChild("Metal  Bat")
-
-                        player.Character.HumanoidRootPart.CFrame = CFrame.new(oldPosition)
-                    end
-                end
-            end
-
-            player.Character.Humanoid:UnequipTools()
-            player.Character:MoveTo(oldPosition)
-
-            notify("Script Status", "Killed all valid players.")
-        end)
-    end
 })
 
 Toggles:AddToggle({
@@ -669,6 +614,85 @@ end)
 end
 end)
   end
+})
+
+Toggles:AddButton({
+    Name = "Loop Kill All v2",
+    Callback = function()
+        _G.KillAll = true
+
+        while _G.KillAll do
+            pcall(function()
+                for i, v in pairs(game.Players:GetPlayers()) do
+                    if game.Players.LocalPlayer.Character:FindFirstChild("Bat") or
+                       game.Players.LocalPlayer.Backpack:FindFirstChild("Bat") or
+                       game.Players.LocalPlayer.Backpack:FindFirstChild("Metal  Bat") or
+                       game.Players.LocalPlayer.Character:FindFirstChild("Metal  Bat") then
+                        if v.Character.Name == game.Players.LocalPlayer.Character.Name then
+                        else
+                            if v.Character:FindFirstChild("Humanoid").Health > 0 and not v.Character:FindFirstChild("ForceField") then
+                                if v.Character:FindFirstChild("LLeft Leg") or v.Character:FindFirstChild("Left Leg"):FindFirstChild("LLeft Leg") then
+                                    local oldposition = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
+                                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(v.Character.HumanoidRootPart.Position)
+                                    repeat wait()
+                                        if game.Players.LocalPlayer.Character:FindFirstChild("Bat") or game.Players.LocalPlayer.Character:FindFirstChild("Metal  Bat") then
+                                            task.wait()
+                                            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(v.Character.HumanoidRootPart.Position + Vector3.new(0, 3, 0))
+                                            local ohInstance1 = v.Character.HumanoidRootPart
+                                            local ohInstance2 = v.Character.Humanoid
+                                            local ohVector33 = Vector3.new(game.Players.LocalPlayer.Character.HumanoidRootPart.Position)
+
+                                            game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Tool").Remote.Hit:FireServer(ohInstance1, ohInstance2, ohVector33)
+                                        elseif game.Players.LocalPlayer.Backpack:FindFirstChild("Bat") then
+                                            game.Players.LocalPlayer.Character.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack:FindFirstChild("Bat"))
+                                        elseif game.Players.LocalPlayer.Backpack:FindFirstChild("Metal  Bat") then
+                                            game.Players.LocalPlayer.Character.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack:FindFirstChild("Metal  Bat"))
+                                        elseif not (game.Players.LocalPlayer.Backpack:FindFirstChild("Bat") or game.Players.LocalPlayer.Backpack:FindFirstChild("Metal  Bat")) then
+                                            local oldpos = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position
+                                            game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(434.0252685546875, 25.781383514404297, 281.36041259765625)
+                                            repeat task.wait()
+                                                game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(434.0252685546875, 25.781383514404297, 281.36041259765625)
+                                                fireproximityprompt(_G.MetalBatProximity, 2, false)
+                                            until game.Players.LocalPlayer.Character:FindFirstChild("Bat") or
+                                                game.Players.LocalPlayer.Backpack:FindFirstChild("Bat") or
+                                                game.Players.LocalPlayer.Backpack:FindFirstChild("Metal  Bat") or
+                                                game.Players.LocalPlayer.Character:FindFirstChild("Metal  Bat")
+                                            game:GetService("Players").localPlayer.Character:MoveTo(oldpos)
+                                            if game.Players.LocalPlayer.Backpack:FindFirstChild("Bat") then
+                                                game.Players.LocalPlayer.Character.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack:FindFirstChild("Bat"))
+                                            elseif game.Players.LocalPlayer.Backpack:FindFirstChild("Metal  Bat") then
+                                                game.Players.LocalPlayer.Character.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack:FindFirstChild("Metal  Bat"))
+                                            end
+                                        end
+                                    until v.Character.Humanoid.Health <= 0
+                                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(oldposition)
+                                end
+                            end
+                        end
+                    else
+                        local oldpos = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position
+                        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(434.0252685546875, 25.781383514404297, 281.36041259765625)
+                        repeat task.wait()
+                            game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(434.0252685546875, 25.781383514404297, 281.36041259765625)
+                            fireproximityprompt(_G.MetalBatProximity, 2, false)
+                        until game.Players.LocalPlayer.Character:FindFirstChild("Bat") or
+                            game.Players.LocalPlayer.Backpack:FindFirstChild("Bat") or
+                            game.Players.LocalPlayer.Backpack:FindFirstChild("Metal  Bat") or
+                            game.Players.LocalPlayer.Character:FindFirstChild ("Metal  Bat")
+                        if game.Players.LocalPlayer.Backpack:FindFirstChild("Bat") then
+                            game.Players.LocalPlayer.Character.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack:FindFirstChild("Bat"))
+                        elseif game.Players.LocalPlayer.Backpack:FindFirstChild("Metal  Bat") then
+                            game.Players.LocalPlayer.Character.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack:FindFirstChild("Metal  Bat"))
+                        end
+                        game:GetService("Players").localPlayer.Character:MoveTo(oldpos)
+                    end
+                end
+            end
+        end
+    end
+end
+end)
+    end
 })
 
 Toggles:AddToggle({
