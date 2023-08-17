@@ -443,17 +443,17 @@ Toggles:AddToggle({
             while _G.RareFur do
                 task.wait()
                 pcall(function()
+                    local player = game.Players.LocalPlayer
+                    local originalPosition = player.Character.HumanoidRootPart.Position
+                    local targetPosition = Vector3.new(262.784332, 15.1500025, 7.68388748) -- Replace with your specific target position
+                    local waitTime = 1 -- Time in seconds to wait
+
                     -- Spawn a block under the player
                     local block = Instance.new("Part")
                     block.Size = Vector3.new(10, 1, 10)
                     block.Anchored = true
-                    block.Position = player.Character.HumanoidRootPart.Position + Vector3.new(262.784332, 10, 7.68388748)
+                    block.Position = Vector3.new(262.784332, 10, 7.68388748) -- Use Vector3.new here
                     block.Parent = game.Workspace
-
-                    local player = game.Players.LocalPlayer
-                    local originalPosition = player.Character.HumanoidRootPart.Position
-                    local targetPosition = Vector3.new(262.784332, 15.1500025, 7.68388748) -- Replace with your specific target position
-                    local waitTime = 0.1 -- Time in seconds to wait
 
                     -- Teleport to the target position
                     player.Character.HumanoidRootPart.CFrame = CFrame.new(targetPosition)
@@ -463,6 +463,9 @@ Toggles:AddToggle({
 
                     -- Return to the original position
                     player.Character.HumanoidRootPart.CFrame = CFrame.new(originalPosition)
+
+                    -- Remove the block
+                    block:Destroy()
                 end)
             end
         end)
