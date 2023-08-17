@@ -345,7 +345,7 @@ Toggles:AddToggle({
                         block.Anchored = true
                         block.Position = Vector3.new(430.275208, 5.7813654, 268.013153) -- The specific position to prevent falling
                         block.Parent = game.Workspace
-
+			task.wait(2)
                         game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(150.23819, 24.9699326, 55.2370529)
                         repeat
                             task.wait()
