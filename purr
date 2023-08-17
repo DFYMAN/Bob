@@ -427,6 +427,38 @@ Toggles:AddToggle({
     end
 })
 
+Toggles:AddToggle({
+    Name = "720",
+    Default = false,
+    Callback = function(RareFur)
+        spawn(function()
+            if RareFur then
+                _G.RareFur = true
+                notify("Furry Infection", "RareFur On")
+            else
+                _G.RareFur = false
+                notify("Furry Infection", "RareFur Off")
+            end
+
+            while _G.RareFur do
+                task.wait()
+                pcall(function()
+                    local player = game.Players.LocalPlayer
+                    local originalPosition = player.Character.HumanoidRootPart.Position
+                    local targetPosition = Vector3.new(150.23819, 24.9699326, 55.2370529)
+                    local waitTime = 2
+
+                    player.Character.HumanoidRootPart.CFrame = CFrame.new(targetPosition)
+
+                    wait(waitTime)
+
+                    player.Character.HumanoidRootPart.CFrame = CFrame.new(originalPosition)
+                end)
+            end
+        end)
+    end
+})
+
 Toggles:AddButton({
 	Name = "Kill All",
 	Callback = function()
