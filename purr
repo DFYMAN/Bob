@@ -538,6 +538,61 @@ end
   end
 })
 
+Toggles:AddButton({
+    Name = "Kill Allv2",
+    Callback = function()
+        pcall(function()
+            local player = game.Players.LocalPlayer
+
+            local batTool = player.Backpack:FindFirstChild("Bat")
+            if not batTool then
+                batTool = player.Backpack:FindFirstChild("Metal  Bat")
+            end
+
+            if not batTool then
+                notify("Script Status", "Bat tool not found in backpack.")
+                return
+            end
+
+            local batEquipped = false
+            local oldPosition = player.Character.HumanoidRootPart.Position
+
+            for _, targetPlayer in pairs(game.Players:GetPlayers()) do
+                if targetPlayer ~= player and targetPlayer.Character and targetPlayer.Character:FindFirstChild("Humanoid") then
+                    local targetCharacter = targetPlayer.Character
+                    local targetHumanoid = targetCharacter.Humanoid
+
+                    if targetHumanoid.Health > 0 and not targetCharacter:FindFirstChild("ForceField") then
+                        if not batEquipped then
+                            batEquipped = true
+                            player.Character.Humanoid:EquipTool(batTool)
+                        end
+
+                        local targetPosition = targetCharacter.HumanoidRootPart.Position
+
+                        player.Character.HumanoidRootPart.CFrame = CFrame.new(targetPosition + Vector3.new(0, 3, 0))
+                        
+                        local ohInstance1 = targetCharacter.HumanoidRootPart
+                        local ohInstance2 = targetCharacter.Humanoid
+                        local ohVector3 = Vector3.new(targetPosition)
+
+                        game.ReplicatedStorage:WaitForChild("Hit"):FireServer(ohInstance1, ohInstance2, ohVector3)
+
+                        repeat wait() until targetHumanoid.Health <= 0 or not player.Character:FindFirstChild("Bat") or not player.Character:FindFirstChild("Metal  Bat")
+
+                        player.Character.HumanoidRootPart.CFrame = CFrame.new(oldPosition)
+                    end
+                end
+            end
+
+            player.Character.Humanoid:UnequipTools()
+            player.Character:MoveTo(oldPosition)
+
+            notify("Script Status", "Killed all valid players.")
+        end)
+    end
+})
+
 Toggles:AddToggle({
 	Name = "Loop Kill All",
 	Callback = function(lkillall)
