@@ -28,6 +28,15 @@ for i,v in pairs(workspace:GetDescendants()) do
     end    
 end  
 
+for i,v in pairs(workspace:GetDescendants()) do
+    if v.Name == "ItemName" and v.Parent.Name == "Configuration" and v.Parent.Parent.Name == "bottle" and v.Value == "bottle" then
+        _G.bottleProximity = v.Parent.Parent:FindFirstChild("ProximityPrompt")
+        -- pass
+    else
+        --- not pass
+    end    
+end  
+
 spawn(function()
     task.wait(1)
 end)    
@@ -231,6 +240,40 @@ end)
 
     end    
 })
+
+Toggles:AddToggle({
+    Name = "AutoGetbottle",
+    Default = false,
+    Callback = function(autogetbottle)
+        spawn(function()
+        if autogetbottle then
+            _G.getbottle = true
+            notify("Furry Infection ","AutoGetbottle On ")
+        else
+            _G.getbottle = false
+            notify("Furry Infection ","AutoGetbottle Off ")
+        end
+while _G.getbottle do task.wait()  
+    pcall(function()
+if game.Players.LocalPlayer.Character:FindFirstChild("bottle") or game.Players.LocalPlayer.Backpack:FindFirstChild("bottle") or game.Players.LocalPlayer.Backpack:FindFirstChild("bottle") or game.Players.LocalPlayer.Character:FindFirstChild("bottle") then
+    
+else    
+    local oldpos = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position
+    game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(75.0997849, 24.4926491, 168.438278)
+    repeat task.wait()
+    game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(75.0997849, 24.4926491, 168.438278)    
+    fireproximityprompt(_G.bottleProximity, 2, false)
+    until game.Players.LocalPlayer.Character:FindFirstChild("bottle") or game.Players.LocalPlayer.Backpack:FindFirstChild("bottle") or game.Players.LocalPlayer.Backpack:FindFirstChild("bottle") or game.Players.LocalPlayer.Character:FindFirstChild("bottle")
+    game:GetService("Players").localPlayer.Character:MoveTo(oldpos)
+    notify("Furry Infection ","Grabbed bottle ")
+end
+end) 
+end
+end)
+
+    end    
+})
+
 
 Toggles:AddButton({
 	Name = "Kill All",
