@@ -319,6 +319,43 @@ Toggles:AddToggle({
     end
 })
 
+Toggles:AddToggle({
+    Name = "test69",
+    Default = false,
+    Callback = function(autogetDietCola)
+        spawn(function()
+            if autogetDietCola then
+                _G.getDietCola = true
+                notify("Furry Infection ", "AutoGetDietCola On ")
+            else
+                _G.getDietCola = false
+                notify("Furry Infection ", "AutoGetDietCola Off ")
+            end
+
+            while _G.DietCola do
+                task.wait()
+                pcall(function()
+                    -- Check if the player's character has a "DietCola" or "DietCola"
+                    if game.Players.LocalPlayer.Character:FindFirstChild("DietCola") or
+                       game.Players.LocalPlayer.Backpack:FindFirstChild("DietCola") or
+                    else
+                        local oldpos = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position
+                        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(430.275208, 10.7813654, 268.013153)
+                        repeat
+                            task.wait()
+                            fireproximityprompt(_G.DietColaProximity, 2, false)
+                        until game.Players.LocalPlayer.Character:FindFirstChild("DietCola") or
+                              game.Players.LocalPlayer.Backpack:FindFirstChild("DietCola")
+                        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(oldpos)
+                        notify("Furry Infection ", "Grabbed DietCola ")
+                    end
+                end)
+            end
+        end)
+    end
+})
+
+
 Toggles:AddButton({
 	Name = "Kill All",
 	Callback = function()
