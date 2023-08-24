@@ -196,8 +196,8 @@ Toggles:AddToggle({
             while _G.getDietCola do
                 task.wait()
                 pcall(function()
-                    if game.Players.LocalPlayer.Character:FindFirstChild("Diet Cola") or
-                       game.Players.LocalPlayer.Backpack:FindFirstChild("Diet Cola") then
+                    if game.Players.LocalPlayer.Character:FindFirstChild("DietCola") or
+                       game.Players.LocalPlayer.Backpack:FindFirstChild("DietCola") then
                         -- The player already has a "DietCola"
                     else
                         local oldpos = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position
@@ -209,12 +209,12 @@ Toggles:AddToggle({
                         block.Position = Vector3.new(430.275208, 5, 268.013153) -- Adjust the position here
                         block.Parent = game.Workspace
 
-                        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(430.275208, 10.7813654, 268.013153)
+                        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(430.275208, 6.7813654, 270.013153)
                         repeat task.wait()
                             game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(430.275208, 10.7813654, 268.013153)
                             fireproximityprompt(_G.DietColaProximity, 2, false)
-                        until game.Players.LocalPlayer.Character:FindFirstChild("Diet Cola") or
-                              game.Players.LocalPlayer.Backpack:FindFirstChild("Diet Cola")
+                        until game.Players.LocalPlayer.Character:FindFirstChild("DietCola") or
+                              game.Players.LocalPlayer.Backpack:FindFirstChild("DietCola")
                         game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(oldpos)
                         notify("Furry Infection ", "Grabbed DietCola ")
                     end
