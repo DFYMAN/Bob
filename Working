@@ -544,6 +544,41 @@ mt.__namecall = newcclosure(function(self, ...)
     end
     end
     return namecall(self, table.unpack(args))
+
+local Tab = Window:MakeTab({
+	Name = "Tab 1",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
 end) 
+Toggles:AddToggle({
+	Name = "Less Cooldown",
+	Callback = function(lesscd)
+	    spawn(function()
+	        if lesscd then
+	            _G.lesscooldown = true
+	            notify("Furry Infection ","Less Cooldown On ")
+	        else
+	            _G.lesscooldown = false
+	            notify("Furry Infection ","Less Cooldown Off ")
+	        end 
+        end)
+    end
+})
+
+local mt = getrawmetatable(game)
+make_writeable(mt)
+
+local namecall = mt.__namecall
+mt.__namecall = newcclosure(function(self, ...)
+    local method = getnamecallmethod()
+    local args = {...}
+
+    if method == "Invoke" and tostring(self) == "Cooldown" then
+    if _G.lesscooldown then    
+        args[1] = 0
+    end
+    end
+    return namecall(self, table.unpack(args))
 
 end)
