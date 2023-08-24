@@ -29,7 +29,7 @@ for i,v in pairs(workspace:GetDescendants()) do
 end  
 
 for i, v in pairs(workspace:GetDescendants()) do
-    if v.Name == "Bottle" and v.Parent.Name == "Configuration" and v.Parent.Parent.Name == "bottle" and v.Value == "bottle" then
+    if v.Name == "Bottle" and v.Parent.Name == "Configuration" and v.Parent.Parent.Name == "Bottle" and v.Value == "Bottle" then
         _G.BottleProximity = v.Parent.Parent:FindFirstChild("ProximityPrompt")
     end    
 end
